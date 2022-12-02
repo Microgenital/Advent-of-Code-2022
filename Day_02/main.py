@@ -1,8 +1,6 @@
 with open("input.prod", "r") as f:
     lines = f.readlines()
 
-# for line in lines:
-    # print(line)
 def main_01(data):
     plays = {
         "A": "Rock",
@@ -51,7 +49,58 @@ def main_01(data):
 
 
 def main_02(data):
+    plays = {
+        "A": "Rock",
+        "B": "Paper",
+        "C": "Scissors",
 
+        "X": "Rock",
+        "Y": "Paper",
+        "Z": "Scissors",
+    }
+
+    scores = {
+        "X": 1,
+        "Y": 2,
+        "Z": 3,
+    }
+
+    score = 0
+    for line in data:
+        enemy_play = line[0]
+        outcome = line[2]
+
+        if outcome == "X": # Loose
+            if plays[enemy_play] == "Rock":
+                score += scores["Z"]
+            elif plays[enemy_play] == "Paper":
+                score += scores["X"]
+            elif plays[enemy_play] == "Scissors":
+                score += scores["Y"]
+            score += 0
+
+        elif outcome == "Y": # Draw
+            if plays[enemy_play] == "Rock":
+                score += scores["X"]
+            elif plays[enemy_play] == "Paper":
+                score += scores["Y"]
+            elif plays[enemy_play] == "Scissors":
+                score += scores["Z"]
+            score += 3
+
+        elif outcome == "Z": # Win
+            if plays[enemy_play] == "Rock":
+                score += scores["Y"]
+            elif plays[enemy_play] == "Paper":
+                score += scores["Z"]
+            elif plays[enemy_play] == "Scissors":
+                score += scores["X"]
+            score += 6
+
+
+
+    print("Score for second Answer is: ", score)
 
 if __name__ == "__main__":
-    main_01(lines)
+    # main_01(lines)
+    main_02(lines)
