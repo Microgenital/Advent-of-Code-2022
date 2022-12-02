@@ -1,6 +1,7 @@
 with open("input.prod", "r") as f:
     lines = f.readlines()
 
+
 def main_01(data):
     plays = {
         "A": "Rock",
@@ -70,7 +71,7 @@ def main_02(data):
         enemy_play = line[0]
         outcome = line[2]
 
-        if outcome == "X": # Loose
+        if outcome == "X":  # Loose
             if plays[enemy_play] == "Rock":
                 score += scores["Z"]
             elif plays[enemy_play] == "Paper":
@@ -79,7 +80,7 @@ def main_02(data):
                 score += scores["Y"]
             score += 0
 
-        elif outcome == "Y": # Draw
+        elif outcome == "Y":  # Draw
             if plays[enemy_play] == "Rock":
                 score += scores["X"]
             elif plays[enemy_play] == "Paper":
@@ -88,7 +89,7 @@ def main_02(data):
                 score += scores["Z"]
             score += 3
 
-        elif outcome == "Z": # Win
+        elif outcome == "Z":  # Win
             if plays[enemy_play] == "Rock":
                 score += scores["Y"]
             elif plays[enemy_play] == "Paper":
@@ -97,10 +98,9 @@ def main_02(data):
                 score += scores["X"]
             score += 6
 
-
-
     print("Score for second Answer is: ", score)
 
+
 if __name__ == "__main__":
-    # main_01(lines)
+    main_01(lines)
     main_02(lines)

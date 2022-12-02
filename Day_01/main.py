@@ -1,4 +1,4 @@
-with open("input.txt") as f:
+with open("input.prod") as f:
     data = f.read().splitlines()
     f.close()
 
