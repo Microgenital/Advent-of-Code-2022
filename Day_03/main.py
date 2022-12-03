@@ -1,5 +1,6 @@
-with open("input.test", "r") as f:
+with open("input.prod", "r") as f:
     lines = f.readlines()
+
 
 def main_01(data):
     score = 0
@@ -60,8 +61,8 @@ def main_01(data):
 
     rucksack = []
     for line in data:
-        line1 = line[0:int((len(line)-1) / 2)]
-        line2 = line[int((len(line)-1) / 2):len(line)-1]
+        line1 = line[0:int((len(line) - 1) / 2)]
+        line2 = line[int((len(line) - 1) / 2):len(line) - 1]
         rucksack.append([line1, line2])
 
         # find the letter that appears in both lines
@@ -71,12 +72,15 @@ def main_01(data):
                 score += priority[letter]
                 break
 
-    print(score)
+    print("Part 01: ", score)
 
 
 def main_02(data):
-    score = 0
     data_index = 0
+    # remove \n from the end of the line
+    for line in data:
+        data[data_index] = line[0:len(line) - 1]
+        data_index += 1
 
     priority = {
         "a": 1,
@@ -133,18 +137,23 @@ def main_02(data):
         "Z": 52,
     }
 
-    for i in data:
-        for j in priority:
-            if j in data[data_index] and j in data[data_index + 1] and j in data[data_index + 2]:
-                score += priority[j]
-            data_index += 3
-            if data_index >= len(data):
-                break
-        data_index = 0
+    score = 0
+    group_index = 0
+    for i in range(int(len(data) / 3)):
+        line1 = data[group_index]
+        line2 = data[group_index + 1]
+        line3 = data[group_index + 2]
+        for char in priority:
+            if char in line1:
+                if char in line2:
+                    if char in line3:
+                        # print(char)
+                        group_index += 3
+                        score += priority[char]
 
+    print("Part 02: ", score)
 
-
-    print(score)
 
 if __name__ == "__main__":
+    main_01(lines)
     main_02(lines)
