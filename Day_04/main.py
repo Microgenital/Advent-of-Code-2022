@@ -67,8 +67,6 @@ def main_02(data):
 
     print(f"Solution 02: {count}")
 
-def test():
-    pass
 
 if __name__ == "__main__":
     main_01(data)
