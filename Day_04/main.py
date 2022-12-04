@@ -1,24 +1,40 @@
-with open("input.test") as f:
+with open("input.prod") as f:
     data = f.read().splitlines()
+
 
 def main_01(data):
     data2 = []
     for line in data:
         data2.append(line.split(","))
 
-
+    count = 0
     for i in data2:
-        first_num = int(i[0][0])
-        second_num = int(i[0][2])
-        for num in range(first_num, second_num + 1):
-            print(num)
-        print("\n")
+        nums_1 = []
+        nums_2 = []
+        list_1 = []
+        list_2 = []
 
+        for j in i[0].split("-"):
+            nums_1.append(int(j))
+
+        for j in i[1].split("-"):
+            nums_2.append(int(j))
+
+        for i in range(nums_1[0], nums_1[1] + 1):
+            list_1.append(i)
+        for i in range(nums_2[0], nums_2[1] + 1):
+            list_2.append(i)
+
+        if set(list_1).issubset(set(list_2)) or set(list_2).issubset(set(list_1)):
+            count += 1
+
+    print(f"Solution 01: {count}")
 
 
 def main_02(data):
     pass
 
+
 if __name__ == "__main__":
     main_01(data)
-    main_02(data)
+    # main_02(data)
